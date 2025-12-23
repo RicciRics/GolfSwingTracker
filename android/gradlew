@@ -1,0 +1,5 @@
+#!/bin/bash
+# Gradle wrapper script for Unix-based systems
+
+cd "$(dirname "$0")"
+exec ./gradlew "$@"

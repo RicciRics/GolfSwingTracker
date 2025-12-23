@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golf Swing Tracker - Direct Install</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        .header h1 {
+            color: #00ff88;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .header .subtitle {
+            color: #fff;
+            font-size: 1.5em;
+            font-weight: 300;
+        }
+        .icon {
+            font-size: 80px;
+            margin: 20px 0;
+        }
+        .card {
+            background: #16213e;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 8px 16px rgba(0, 255, 136, 0.2);
+            border: 2px solid #00ff88;
+        }
+        .card h2 {
+            color: #00ff88;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .step {
+            background: #1a1a2e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #00ff88;
+        }
+        .step-number {
+            color: #00ff88;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+        .highlight {
+            background: #00ff88;
+            color: #1a1a2e;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .warning {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .info {
+            background: #4ecdc4;
+            color: #1a1a2e;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .qr-placeholder {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .qr-placeholder img {
+            max-width: 100%;
+            height: auto;
+        }
+        .button {
+            background: #00ff88;
+            color: #1a1a2e;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        .button:hover {
+            background: #00dd77;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.4);
+        }
+        .button-secondary {
+            background: transparent;
+            border: 2px solid #00ff88;
+            color: #00ff88;
+        }
+        .button-secondary:hover {
+            background: #00ff88;
+            color: #1a1a2e;
+        }
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .option-card {
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .option-card:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px);
+        }
+        .option-card .option-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .option-card h3 {
+            color: #00ff88;
+            margin: 10px 0;
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .header .subtitle {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="icon">⛳</div>
+            <h1>Golf Swing Tracker</h1>
+            <div class="subtitle">Track Your Swing Speed</div>
+        </div>
+
+        <div class="card">
+            <h2>📱 How to Install on Your Phone</h2>
+            <div class="info">
+                ⚠️ This app requires Android SDK to build. Since you don't have it installed, here are your best options:
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Choose Your Installation Method</h2>
+            
+            <div class="options">
+                <div class="option-card" onclick="showOption(1)">
+                    <div class="option-icon">📦</div>
+                    <h3>Option 1</h3>
+                    <p>Get Pre-Built APK</p>
+                </div>
+                
+                <div class="option-card" onclick="showOption(2)">
+                    <div class="option-icon">🔧</div>
+                    <h3>Option 2</h3>
+                    <p>Build It Yourself</p>
+                </div>
+                
+                <div class="option-card" onclick="showOption(3)">
+                    <div class="option-icon">☁️</div>
+                    <h3>Option 3</h3>
+                    <p>Cloud Build Service</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="option1" class="card" style="display:none;">
+            <h2>📦 Option 1: Get Pre-Built APK (Easiest!)</h2>
+            
+            <div class="step">
+                <span class="step-number">Step 1:</span>
+                Find someone with Android Studio installed (friend, colleague, online service)
+            </div>
+            
+            <div class="step">
+                <span class="step-number">Step 2:</span>
+                Send them the project ZIP file from your Desktop:<br>
+                <span class="highlight">GolfSwingTracker-v1.0.0-[timestamp].zip</span>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">Step 3:</span>
+                They run: <span class="highlight">.\BUILD-APK.ps1</span>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">Step 4:</span>
+                They send you the APK file from their Desktop
+            </div>
+            
+            <div class="step">
+                <span class="step-number">Step 5:</span>
+                Install APK on your phone (see instructions below)
+            </div>
+        </div>
+
+        <div id="option2" class="card" style="display:none;">
+            <h2>🔧 Option 2: Build It Yourself</h2>
+            
+            <div class="step">
+                <span class="step-number">Step 1:</span>
+                Install Android Studio:<br>
+                <a href="https://developer.android.com/studio" class="button" target="_blank">Download Android Studio</a>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">Step 2:</span>
+                After installation, run the installer script:<br>
+                <span class="highlight">INSTALL.bat</span> or <span class="highlight">INSTALL.ps1</span>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">Step 3:</span>
+                Follow the guided setup (takes 20-30 minutes)
+            </div>
+            
+            <div class="step">
+                <span class="step-number">Step 4:</span>
+                Run the build script:<br>
+                <span class="highlight">.\BUILD-APK.ps1</span>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">Step 5:</span>
+                APK will be on your Desktop - transfer to phone!
+            </div>
+        </div>
+
+        <div id="option3" class="card" style="display:none;">
+            <h2>☁️ Option 3: Use EAS Build (Expo Application Services)</h2>
+            
+            <div class="warning">
+                Note: This project uses React Native CLI, not Expo. For cloud building, you would need to either:
+            </div>
+            
+            <div class="step">
+                <span class="step-number">A:</span>
+                Convert to Expo (complex, not recommended)
+            </div>
+            
+            <div class="step">
+                <span class="step-number">B:</span>
+                Use GitHub Actions with Android SDK container (requires setup)
+            </div>
+            
+            <div class="step">
+                <span class="step-number">C:</span>
+                Use a cloud CI/CD service like CircleCI, Travis CI, or AppCenter
+            </div>
+            
+            <div class="info">
+                💡 Recommendation: Use Option 1 or 2 - they're simpler!
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📲 Installing APK on Your Phone</h2>
+            
+            <div class="step">
+                <span class="step-number">1.</span>
+                Transfer the APK file to your phone (via email, USB, cloud storage, etc.)
+            </div>
+            
+            <div class="step">
+                <span class="step-number">2.</span>
+                On your Android phone, open <span class="highlight">Settings</span>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">3.</span>
+                Go to <span class="highlight">Security</span> or <span class="highlight">Apps</span>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">4.</span>
+                Enable <span class="highlight">Install from Unknown Sources</span> or <span class="highlight">Install Unknown Apps</span>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">5.</span>
+                Locate the APK file (in Downloads or Files app)
+            </div>
+            
+            <div class="step">
+                <span class="step-number">6.</span>
+                Tap the APK file
+            </div>
+            
+            <div class="step">
+                <span class="step-number">7.</span>
+                Tap <span class="highlight">Install</span>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">8.</span>
+                Open <span class="highlight">Golf Swing Tracker</span> app
+            </div>
+            
+            <div class="step">
+                <span class="step-number">9.</span>
+                Grant camera permission when prompted
+            </div>
+            
+            <div class="step">
+                <span class="step-number">10.</span>
+                Start tracking your golf swings! 🏌️‍♂️
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Quick Summary</h2>
+            <p style="font-size: 1.1em; line-height: 1.8;">
+                Since building requires Android SDK (which you don't have installed), the <strong style="color: #00ff88;">fastest path</strong> is to:
+            </p>
+            <ol style="font-size: 1.1em; line-height: 2; margin: 20px 0 20px 30px;">
+                <li>Share your project ZIP with someone who has Android Studio</li>
+                <li>They build the APK using <span class="highlight">BUILD-APK.ps1</span></li>
+                <li>They send you the APK file</li>
+                <li>You install it on your phone</li>
+            </ol>
+            <p style="font-size: 1.1em; line-height: 1.8;">
+                <strong style="color: #00ff88;">OR</strong> take 30 minutes to install Android Studio yourself using <span class="highlight">INSTALL.bat</span>, then build your own APK!
+            </p>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h2>📍 Your Project Files</h2>
+            <p style="margin: 20px 0;">
+                <strong>Project Location:</strong><br>
+                <span class="highlight">C:\GolfSwingTracker</span>
+            </p>
+            <p style="margin: 20px 0;">
+                <strong>ZIP Package:</strong><br>
+                <span class="highlight">Desktop\GolfSwingTracker-v1.0.0-*.zip</span>
+            </p>
+            <div style="margin-top: 30px;">
+                <a href="file:///C:/GolfSwingTracker" class="button">Open Project Folder</a>
+                <button onclick="window.location.reload()" class="button button-secondary">Refresh Page</button>
+            </div>
+        </div>
+
+        <div class="card" style="background: #00ff88; color: #1a1a2e;">
+            <h2 style="color: #1a1a2e;">✅ What You Have</h2>
+            <ul style="font-size: 1.1em; line-height: 2; margin-left: 30px;">
+                <li>✅ Complete React Native source code</li>
+                <li>✅ All configuration files</li>
+                <li>✅ Comprehensive documentation</li>
+                <li>✅ Installation scripts (INSTALL.bat, INSTALL.ps1)</li>
+                <li>✅ APK builder script (BUILD-APK.ps1)</li>
+                <li>✅ Project ZIP for easy sharing</li>
+            </ul>
+            <p style="margin-top: 20px; font-size: 1.2em; font-weight: bold;">
+                You just need Android SDK to build, or someone else to build it for you!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function showOption(num) {
+            // Hide all options
+            document.getElementById('option1').style.display = 'none';
+            document.getElementById('option2').style.display = 'none';
+            document.getElementById('option3').style.display = 'none';
+            
+            // Show selected option
+            document.getElementById('option' + num).style.display = 'block';
+            
+            // Scroll to option
+            document.getElementById('option' + num).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>
