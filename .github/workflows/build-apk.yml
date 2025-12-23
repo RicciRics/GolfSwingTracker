@@ -1,12 +1,11 @@
-# GitHub Actions Workflow - Free Cloud Build
-# This will build your APK in the cloud for free!
+# Build Android APK using GitHub Actions
 
 name: Build Android APK
 
 on:
   push:
-    branches: [ main, master ]
-  workflow_dispatch:  # Allows manual trigger
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -14,7 +13,7 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -24,26 +23,22 @@ jobs:
     - name: Setup Java
       uses: actions/setup-java@v4
       with:
-        distribution: 'temurin'
+        distribution: 'zulu'
         java-version: '17'
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
-
     - name: Install dependencies
-      run: npm ci || npm install
+      run: npm install
 
-    - name: Make gradlew executable
+    - name: Make Gradlew executable
       run: chmod +x android/gradlew
 
-    - name: Build Android APK
+    - name: Build Android Release APK
       run: |
         cd android
+        ./gradlew assembleRelease --no-daemon --stacktrace
+
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: app-release
-        path: android/app/build/outputs/apk/release/*.apk
-        if-no-files-found: errorase/app-release.apk
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: golf-swing-tracker
+        path: android/app/build/outputs/apk/release/app-release.apk
